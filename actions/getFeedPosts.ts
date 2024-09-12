@@ -1,10 +1,11 @@
 "use server";
+
 import db from "@/db";
 
-export const getPostsByUser = async ({ email }: { email: string }) => {
+export const getFeedPosts = async ({ email }: { email: string }) => {
   const posts = await db.post.findMany({
     where: {
-      authorId: email,
+      type: "PUBLIC",
     },
     orderBy: {
       createdAt: "desc",
